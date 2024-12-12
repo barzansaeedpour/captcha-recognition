@@ -1,4 +1,5 @@
 DATA_DIR = "./input/plates/"
+MODEL_SAVE_DIR = './'
 BATCH_SIZE = 8
 IMAGE_WIDTH = 300
 IMAGE_HEIGHT = 75
