@@ -1,4 +1,5 @@
-DATA_DIR = "./input/plates/"
+# DATA_DIR = "./input/plates/"
+DATA_DIR = "./input/real-plates/"
 MODEL_SAVE_DIR = './'
 BATCH_SIZE = 8
 IMAGE_WIDTH = 300

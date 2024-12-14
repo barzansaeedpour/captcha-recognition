@@ -54,9 +54,14 @@ def decode_predictions(preds, encoder):
 
 
 def run_training():
-    image_files = glob.glob(os.path.join(config.DATA_DIR, "*.png"))
+    # image_files = glob.glob(os.path.join(config.DATA_DIR, "*.png"))
+    image_files = glob.glob(os.path.join(config.DATA_DIR, "*.jpg"))
     image_files = [f.replace('\\','/') for f in image_files]
-    targets_orig = [x.split("/")[-1][:-4] for x in image_files]
+    # targets_orig = [x.split("/")[-1][:-4] for x in image_files]
+    targets_orig = [x.split("/")[-1][:-4].split('_')[1] for x in image_files]
+    for t in targets_orig:
+        if not len(t)==8:
+            print('ok')
     targets = [[c for c in x] for x in targets_orig]
     targets_flat = [c for clist in targets for c in clist]
 
