@@ -55,7 +55,7 @@ for file in files:
         labels = [l.replace(l,symbols[l]) for l in labels]
         new_label = ''.join(labels)
         counter +=1
-        os.rename(base_path+file , base_path+str(counter)+'_'+new_label+'.jpg')
+        # os.rename(base_path+file , base_path+str(counter)+'_'+new_label+'.jpg')
         print(labels)
         
         

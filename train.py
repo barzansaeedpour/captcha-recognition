@@ -135,7 +135,7 @@ def run_training():
         scheduler.step(test_loss)
 
         # Save the model if accuracy is 1 
-        if accuracy == 1.0: 
+        if accuracy >= 0.9: 
             save_path = os.path.join(config.MODEL_SAVE_DIR, f"model_epoch_{epoch}_accuracy_{accuracy:.4f}.pth") 
             torch.save(model.state_dict(), save_path) 
             print(f"Model saved at {save_path}")
