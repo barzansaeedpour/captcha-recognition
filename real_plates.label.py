@@ -37,26 +37,41 @@ symbols = {
 def get_labels(label_file_path):
     labels = []
     with open(label_file_path, 'r') as file:
+        chars = []
         for line in file:
             # Assuming each line contains a label in the format: class_name x y w h
             parts = line.strip().split()
             # if len(parts) == 6:  # Check if the line has the expected number of parts
-            labels.append(parts[0])  # Add the class name to the list
+            temp = list(map(float, parts))
+            chars.append(temp)
+        chars.sort(key=lambda x: x[1])    
+        # labels.append(parts[0])  # Add the class name to the list
+        labels = [str(int(c[0])) for c in chars]
     return labels
 
-base_path = './input/real-plates/'
+base_path = './input/all-plates/'
 files = os.listdir(base_path)
 counter = 0
 for file in files:
     if file.endswith(".jpg"):
         
         label_file_path = file.replace('.jpg', '.txt')
-        labels = get_labels(base_path+label_file_path)
+        try:
+            labels = get_labels(base_path+label_file_path)
+        except:
+            print("Removed Image")
+            os.remove(base_path+file)
+            continue
+        if len(labels) != 8:
+            os.remove(base_path+file)
+            os.remove(base_path+label_file_path)
+            print("Removed Image and labels")
+            continue
         labels = [l.replace(l,symbols[l]) for l in labels]
         new_label = ''.join(labels)
         counter +=1
-        # os.rename(base_path+file , base_path+str(counter)+'_'+new_label+'.jpg')
-        print(labels)
+        os.rename(base_path+file , base_path+str(counter)+'_'+new_label+'.jpg')
+        # print(labels)
         
         
 

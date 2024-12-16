@@ -194,7 +194,7 @@ def run_testing():
     
     # Test a single image 
     
-    model_path = "./model_epoch_55_accuracy_1.0000.pth" 
+    model_path = "./model_epoch_142_accuracy_1.0000.pth" 
     # Load the trained model 
     model = CaptchaModel(num_chars=len(lbl_enc.classes_)) 
     model.load_state_dict(torch.load(model_path)) 
@@ -229,5 +229,5 @@ def run_testing():
 
 
 if __name__ == "__main__":
-    run_training()
-    # run_testing()
+    # run_training()
+    run_testing()
