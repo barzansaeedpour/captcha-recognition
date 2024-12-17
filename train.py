@@ -135,7 +135,7 @@ def run_training():
         scheduler.step(test_loss)
 
         # Save the model if accuracy is 1 
-        if accuracy >= 0.9: 
+        if accuracy >= 0.8: 
             save_path = os.path.join(config.MODEL_SAVE_DIR, f"model_epoch_{epoch}_accuracy_{accuracy:.4f}.pth") 
             torch.save(model.state_dict(), save_path) 
             print(f"Model saved at {save_path}")
@@ -163,7 +163,7 @@ def run_testing():
         _,
         test_targets_orig,
     ) = model_selection.train_test_split(
-        image_files, targets_enc, targets_orig, test_size=0.99, random_state=42
+        image_files, targets_enc, targets_orig, test_size=0.96, random_state=42
     )
 
     # train_dataset = dataset.ClassificationDataset(
@@ -194,7 +194,7 @@ def run_testing():
     
     # Test a single image 
     
-    model_path = "./model_epoch_142_accuracy_1.0000.pth" 
+    model_path = "./model_epoch_110_accuracy_0.9853.pth" 
     # Load the trained model 
     model = CaptchaModel(num_chars=len(lbl_enc.classes_)) 
     model.load_state_dict(torch.load(model_path)) 
